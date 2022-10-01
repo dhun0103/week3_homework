@@ -56,7 +56,9 @@ public class Taxi extends PublicTransport {
     //주유하기
     @Override
     public void changeFuel(int addfuel) {
+
         nowFuel += addfuel;
+        if (nowFuel >= 10 && status.equals("운행불가")) status = "일반";
     }
 
     //상태 확인 + 주유량 확인
@@ -72,6 +74,7 @@ public class Taxi extends PublicTransport {
     public void payfor() {
         allfare += payment;
         nowPassenger = 0;
+        status = "일반";
         if (nowFuel < 10) status = "운행불가";
     }
 }
